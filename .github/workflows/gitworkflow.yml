@@ -1,0 +1,46 @@
+name: "Copilot Setup Steps"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Install Python ML dependencies
+        run: |
+          pip install --upgrade pip
+          pip install numpy scipy scikit-learn pandas matplotlib seaborn \
+                      torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu \
+                      transformers datasets accelerate peft \
+                      langchain langchain-community openai anthropic \
+                      xgboost lightgbm
+
+      - name: Verify toolset
+        run: |
+          python -c "import numpy, torch, sklearn, transformers; print('Python ML stack OK')"
+          java -version
