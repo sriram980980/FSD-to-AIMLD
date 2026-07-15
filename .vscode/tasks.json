@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Course: Generate Node",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "agents/orchestrator.py",
+        "--node",
+        "${input:nodeId}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}"
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Course: Generate ALL Nodes",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "agents/orchestrator.py",
+        "--all"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}"
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Course: Status",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "agents/orchestrator.py",
+        "--status"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Course: Install Agent Dependencies",
+      "type": "shell",
+      "command": "pip",
+      "args": [
+        "install",
+        "-r",
+        "agents/requirements.txt"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "nodeId",
+      "description": "Course node ID (e.g. 1.1.1, 2.1.2, 4.3)",
+      "type": "promptString",
+      "default": "1.1.1"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "editor.rulers": [
+    88
+  ],
+  "editor.formatOnSave": true,
+  "python.defaultInterpreterPath": "python",
+  "python.analysis.typeCheckingMode": "basic",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": ".github/copilot-instructions.md"
+    }
+  ],
+  "files.associations": {
+    "*.md": "markdown"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "lesson.md": "assignment.md",
+    "*.py": "*.java"
+  }
+}

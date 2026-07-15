@@ -132,4 +132,49 @@ Show Java parallel ONLY when Java ecosystem has real production tooling:
 - Math: Apache Commons Math vs NumPy/SciPy
 
 ## Commands
-No build system yet — add as modules are created.
+
+### Claude Code Slash Commands
+Run these from Claude Code in this project directory:
+
+| Command | What it does |
+|---------|-------------|
+| `/generate-lesson 1.1.1` | Generate `lesson.md` for node 1.1.1 |
+| `/generate-assignment 1.1.1` | Generate `assignment.md` + starter code for node 1.1.1 |
+| `/generate-all` | Generate all nodes with status `"todo"` in `progress.json` |
+| `/course-status` | Print progress table — checks files exist on disk |
+
+Node IDs: `1.1.1`, `1.1.2`, `1.2.1`, `2.1.1`, `2.1.2`, `2.2.1`, `3.1.1`, `3.1.2`, `3.2.1`, `4.1`, `4.2`, `4.3`, `5.1`, `5.2`, `6.1`, `6.2`, `6.3`
+
+### Python Orchestrator (Claude API)
+```bash
+# One-time setup
+pip install -r agents/requirements.txt
+export ANTHROPIC_API_KEY=sk-ant-...   # Windows: set ANTHROPIC_API_KEY=sk-ant-...
+
+# Generate one node
+python agents/orchestrator.py --node 1.1.1
+
+# Generate all todo nodes
+python agents/orchestrator.py --all
+
+# Check progress
+python agents/orchestrator.py --status
+```
+
+### VS Code Tasks
+`Terminal → Run Task` (or `Ctrl+Shift+P → Tasks: Run Task`):
+- **Course: Generate Node** — prompts for node ID, runs orchestrator
+- **Course: Generate ALL Nodes** — runs all todo nodes
+- **Course: Status** — prints progress table
+- **Course: Install Agent Dependencies** — `pip install -r agents/requirements.txt`
+
+Requires `ANTHROPIC_API_KEY` in your shell environment before opening VS Code.
+
+### GitHub Copilot
+`.github/copilot-instructions.md` is loaded automatically in this workspace.
+Copilot Chat follows course style rules for all content generation.
+Use Copilot Chat to generate individual sections, review drafts, or suggest FSD analogies.
+Example prompts:
+- `Generate lesson.md for node 3.1.1 following the course guidelines`
+- `Write starter.py for the attention mechanism assignment`
+- `Suggest a better FSD analogy for backpropagation`
