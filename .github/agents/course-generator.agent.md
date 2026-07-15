@@ -8,8 +8,12 @@ description: >
   Use: @course-generator status
 model: claude-sonnet-4-6
 tools:
-  - codebase
-  - file
+  - bash
+  - view
+  - edit
+  - grep
+  - glob
+  - web_search
 ---
 
 You are the course content generation agent for **FSD → AI/ML Developer**, a course transforming Fullstack engineers into AI/ML engineers.
